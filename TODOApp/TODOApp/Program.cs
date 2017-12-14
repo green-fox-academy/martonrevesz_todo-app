@@ -22,6 +22,10 @@ namespace TODOApp
                 printer.PrintTasks(handler.ReadAllTasks());
 
             }
+            else if ((args.Length == 2) && (args[0] == "-a"))
+            {
+                handler.WriteNewTask(args[1]);
+            }
         }
     }
 }
