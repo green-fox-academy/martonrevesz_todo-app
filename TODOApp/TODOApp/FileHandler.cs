@@ -55,23 +55,20 @@ namespace TODOApp
         {
             string[] lines = File.ReadAllLines(path);
             sw = new StreamWriter(path);
+            try
+            {
+                if (lines[index][0] != '*')
+                {
+                    lines[index] = "*" + lines[index];
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Console.WriteLine("Unable to check: index is out of bound");
+            }
             for (int i = 0; i < lines.Length; i++)
             {
-                if (i == (index - 1))
-                {
-                    if (lines[i][0] != '*')
-                    {
-                        sw.WriteLine("*" + lines[i]);
-                    }
-                    else
-                    {
-                        sw.WriteLine(lines[i]);
-                    }
-                }
-                else
-                {
-                    sw.WriteLine(lines[i]);
-                }
+                sw.WriteLine(lines[i]);
             }
             sw.Close();
         }

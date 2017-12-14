@@ -50,7 +50,18 @@ namespace TODOApp
             }
             else if (args[0] == "-c")
             {
-                handler.CheckTask(Int32.Parse(args[1]));
+                try
+                {
+                    handler.CheckTask(Int32.Parse(args[1]) - 1);
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Unable to check: no index provided");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to remove: index is not a number.");
+                }
             }
             else
             {
