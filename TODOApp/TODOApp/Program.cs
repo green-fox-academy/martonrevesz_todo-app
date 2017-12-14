@@ -24,38 +24,33 @@ namespace TODOApp
             }
             else if (args[0] == "-a")
             {
-                if (args.Length >= 2)
+                try
                 {
                     handler.WriteNewTask(args[1]);
                 }
-                else
+                catch (IndexOutOfRangeException)
                 {
                     Console.WriteLine("Unable to add: no task provided");
                 }
             }
             else if (args[0] == "-r")
             {
-                if (args.Length == 2)
+                try
                 {
-                    int input = 0;
-                    try
-                    {
-                        input = Int32.Parse(args[1]);
-                        handler.RemoveTask(input);
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Unable to remove: index is not a number.");
-                    }
+                    handler.RemoveTask(Int32.Parse(args[1]) -1);
                 }
-                else if(args.Length == 1)
+                catch (FormatException)
                 {
-                    Console.WriteLine("Unable to remove: no index provided.");
+                    Console.WriteLine("Unable to remove: index is not a number.");
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Unable to remove: no index provided");
                 }
             }
             else if (args[0] == "-c")
             {
-                handler.CheckTask(Int32.Parse(args[1])); 
+                handler.CheckTask(Int32.Parse(args[1]));
             }
             else
             {
