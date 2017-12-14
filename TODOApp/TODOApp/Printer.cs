@@ -22,7 +22,6 @@ namespace TODOApp
 
         public void PrintTasks(string[] myArray)
         {
-
             if (myArray.Length == 0)
             {
                 Console.WriteLine("No todos for today! :)");
@@ -33,11 +32,11 @@ namespace TODOApp
                 {
                     if (myArray[i][0] == '*')
                     {
-                        Console.WriteLine(i+1 + " - [X] " + myArray[i].Substring(1));
+                        Console.WriteLine(i + 1 + " - [X] " + myArray[i].Substring(1));
                     }
                     else
                     {
-                        Console.WriteLine(i+1 + " - [ ] " + myArray[i]);
+                        Console.WriteLine(i + 1 + " - [ ] " + myArray[i]);
                     }
                 }
             }

@@ -37,7 +37,7 @@ namespace TODOApp
             {
                 try
                 {
-                    handler.RemoveTask(Int32.Parse(args[1]) -1);
+                    handler.RemoveTask(Int32.Parse(args[1]) - 1);
                 }
                 catch (FormatException)
                 {
