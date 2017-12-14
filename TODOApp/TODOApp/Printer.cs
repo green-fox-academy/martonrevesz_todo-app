@@ -22,20 +22,25 @@ namespace TODOApp
 
         public void PrintTasks(string[] myArray)
         {
-            int i = 1;
-            if(myArray.Length == 0)
+
+            if (myArray.Length == 0)
             {
                 Console.WriteLine("No todos for today! :)");
             }
             else
             {
-                foreach (string line in myArray)
+                for (int i = 0; i < myArray.Length; i++)
                 {
-                    Console.WriteLine(i + " - " + line);
-                    i++;
+                    if (myArray[i][0] == '*')
+                    {
+                        Console.WriteLine(i+1 + " - [X] " + myArray[i].Substring(1));
+                    }
+                    else
+                    {
+                        Console.WriteLine(i+1 + " - [ ] " + myArray[i]);
+                    }
                 }
             }
-
         }
     }
 }

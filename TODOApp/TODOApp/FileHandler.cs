@@ -28,13 +28,38 @@ namespace TODOApp
         {
             string[] lines = File.ReadAllLines(path);
             sw = new StreamWriter(path);
-            for (int i = 0; i < index -1; i++)
+            for (int i = 0; i < index - 1; i++)
             {
                 sw.WriteLine(lines[i]);
             }
             for (int i = index; i < lines.Length; i++)
             {
                 sw.WriteLine(lines[i]);
+            }
+            sw.Close();
+        }
+
+        public void CheckTask(int index)
+        {
+            string[] lines = File.ReadAllLines(path);
+            sw = new StreamWriter(path);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (i == (index - 1))
+                {
+                    if (lines[i][0] != '*')
+                    {
+                        sw.WriteLine("*" + lines[i]);
+                    }
+                    else
+                    {
+                        sw.WriteLine(lines[i]);
+                    }
+                }
+                else
+                {
+                    sw.WriteLine(lines[i]);
+                }
             }
             sw.Close();
         }

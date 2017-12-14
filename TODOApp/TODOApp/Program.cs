@@ -30,6 +30,10 @@ namespace TODOApp
             {
                 handler.RemoveTask(Int32.Parse(args[1]));
             }
+            else if (args[0] == "-c")
+            {
+                handler.CheckTask(Int32.Parse(args[1]));
+            }
         }
     }
 }
