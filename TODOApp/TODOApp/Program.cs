@@ -24,15 +24,43 @@ namespace TODOApp
             }
             else if (args[0] == "-a")
             {
-                handler.WriteNewTask(args[1]);
+                if (args.Length >= 2)
+                {
+                    handler.WriteNewTask(args[1]);
+                }
+                else
+                {
+                    Console.WriteLine("Unable to add: no task provided");
+                }
             }
             else if (args[0] == "-r")
             {
-                handler.RemoveTask(Int32.Parse(args[1]));
+                if (args.Length == 2)
+                {
+                    int input = 0;
+                    try
+                    {
+                        input = Int32.Parse(args[1]);
+                        handler.RemoveTask(input);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Unable to remove: index is not a number.");
+                    }
+                }
+                else if(args.Length == 1)
+                {
+                    Console.WriteLine("Unable to remove: no index provided.");
+                }
             }
             else if (args[0] == "-c")
             {
-                handler.CheckTask(Int32.Parse(args[1]));
+                handler.CheckTask(Int32.Parse(args[1])); 
+            }
+            else
+            {
+                Console.WriteLine("Unsupported argument.");
+                printer.PrintUsage();
             }
         }
     }

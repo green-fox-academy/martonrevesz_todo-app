@@ -24,19 +24,27 @@ namespace TODOApp
             sw.Close();
         }
 
-        internal void RemoveTask(int index)
+        public void RemoveTask(int index)
         {
             string[] lines = File.ReadAllLines(path);
-            sw = new StreamWriter(path);
-            for (int i = 0; i < index - 1; i++)
+            
+            if ((index < 1) || (index > lines.Length))
             {
-                sw.WriteLine(lines[i]);
+                Console.WriteLine("Unable to remove: index is out of bound");
             }
-            for (int i = index; i < lines.Length; i++)
-            {
-                sw.WriteLine(lines[i]);
+            else {
+                sw = new StreamWriter(path);
+                for (int i = 0; i < index - 1; i++)
+                {
+                    sw.WriteLine(lines[i]);
+                }
+                for (int i = index; i < lines.Length; i++)
+                {
+                    sw.WriteLine(lines[i]);
+                }
+                sw.Close();
             }
-            sw.Close();
+
         }
 
         public void CheckTask(int index)
