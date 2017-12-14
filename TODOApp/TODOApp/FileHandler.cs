@@ -26,19 +26,13 @@ namespace TODOApp
 
         public void RemoveTask(int index)
         {
+            string[] lines = File.ReadAllLines(path);
             try
             {
-                string[] lines = File.ReadAllLines(path);
                 sw = new StreamWriter(path);
-
-                for (int i = 0; i < index; i++)
-                {
-                    sw.WriteLine(lines[i]);
-                }
-                for (int i = index + 1; i < lines.Length; i++)
-                {
-                    sw.WriteLine(lines[i]);
-                }
+                var linesList = lines.ToList();
+                linesList.Remove(lines[index]);
+                lines = linesList.ToArray();
             }
             catch (IndexOutOfRangeException)
             {
@@ -47,6 +41,10 @@ namespace TODOApp
             catch (Exception)
             {
                 Console.WriteLine("Unable to remove");
+            }
+            for (int i = 0; i < lines.Length; i++)
+            {
+                sw.WriteLine(lines[i]);
             }
             sw.Close();
         }
