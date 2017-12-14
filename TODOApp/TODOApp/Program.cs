@@ -17,14 +17,18 @@ namespace TODOApp
             {
                 printer.PrintUsage();
             }
-            else if ((args.Length == 1) && (args[0] == "-l"))
+            else if (args[0] == "-l")
             {
                 printer.PrintTasks(handler.ReadAllTasks());
 
             }
-            else if ((args.Length == 2) && (args[0] == "-a"))
+            else if (args[0] == "-a")
             {
                 handler.WriteNewTask(args[1]);
+            }
+            else if (args[0] == "-r")
+            {
+                handler.RemoveTask(Int32.Parse(args[1]));
             }
         }
     }

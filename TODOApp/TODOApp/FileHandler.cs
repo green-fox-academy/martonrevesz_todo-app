@@ -20,9 +20,23 @@ namespace TODOApp
         public void WriteNewTask(string line)
         {
             sw = new StreamWriter(path, true);
-            sw.Write("\n" + line);
+            sw.WriteLine(line);
             sw.Close();
         }
 
+        internal void RemoveTask(int index)
+        {
+            string[] lines = File.ReadAllLines(path);
+            sw = new StreamWriter(path);
+            for (int i = 0; i < index -1; i++)
+            {
+                sw.WriteLine(lines[i]);
+            }
+            for (int i = index; i < lines.Length; i++)
+            {
+                sw.WriteLine(lines[i]);
+            }
+            sw.Close();
+        }
     }
 }
