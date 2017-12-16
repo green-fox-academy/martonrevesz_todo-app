@@ -12,6 +12,7 @@ namespace TODOApp
         {
             var printer = new Printer();
             var handler = new FileHandler();
+            string fileName = "list.txt";
 
             if (args.Length == 0)
             {
@@ -19,14 +20,14 @@ namespace TODOApp
             }
             else if (args[0] == "-l")
             {
-                printer.PrintTasks(handler.ReadAllTasks());
+                printer.PrintTasks(handler.ReadAllTasks(fileName));
 
             }
             else if (args[0] == "-a")
             {
                 try
                 {
-                    handler.WriteNewTask(args[1]);
+                    handler.WriteNewTask(fileName, args[1]);
                 }
                 catch (IndexOutOfRangeException)
                 {
@@ -37,7 +38,7 @@ namespace TODOApp
             {
                 try
                 {
-                    handler.RemoveTask(Int32.Parse(args[1]) - 1);
+                    handler.RemoveTask(fileName, Int32.Parse(args[1]) - 1);
                 }
                 catch (FormatException)
                 {
@@ -52,7 +53,7 @@ namespace TODOApp
             {
                 try
                 {
-                    handler.CheckTask(Int32.Parse(args[1]) - 1);
+                    handler.CheckTask(fileName, Int32.Parse(args[1]) - 1);
                 }
                 catch (IndexOutOfRangeException)
                 {

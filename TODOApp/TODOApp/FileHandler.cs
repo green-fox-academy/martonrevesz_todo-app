@@ -1,35 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace TODOApp
 {
-    class FileHandler
+    public class FileHandler
     {
         StreamWriter sw = null;
-        string path = @"C:\Users\Hajnal és Marci\greenfox\martonrevesz_todo-app\TODOApp\TODOApp\list.txt";
-
-        public string[] ReadAllTasks()
+        
+        public string[] ReadAllTasks(string fileName)
         {
-            return File.ReadAllLines(path);
+            try
+            {
+                return File.ReadAllLines(fileName);
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
-        public void WriteNewTask(string line)
+        public void WriteNewTask(string fileName, string line)
         {
-            sw = new StreamWriter(path, true);
+            sw = new StreamWriter(fileName, true);
             sw.WriteLine(line);
             sw.Close();
         }
 
-        public void RemoveTask(int index)
+        public void RemoveTask(string fileName, int index)
         {
-            string[] lines = File.ReadAllLines(path);
+            string[] lines = File.ReadAllLines(fileName);
             try
             {
-                sw = new StreamWriter(path);
+                sw = new StreamWriter(fileName);
                 var linesList = lines.ToList();
                 linesList.Remove(lines[index]);
                 lines = linesList.ToArray();
@@ -49,10 +56,10 @@ namespace TODOApp
             sw.Close();
         }
 
-        public void CheckTask(int index)
+        public void CheckTask(string fileName, int index)
         {
-            string[] lines = File.ReadAllLines(path);
-            sw = new StreamWriter(path);
+            string[] lines = File.ReadAllLines(fileName);
+            sw = new StreamWriter(fileName);
             try
             {
                 if (lines[index][0] != '*')
